@@ -23,10 +23,10 @@ const LoginPage: React.FC = () => {
   const [password, setPassword] = useState('');
   const [status, setStatus] = useState({ loading: false, error: false });
 
-  const handleLogin = async () => {
+  const handleRegister = async () => {
     try {
       setStatus({ loading: true, error: false });
-      const credential = await auth.signInWithEmailAndPassword(email, password);
+      const credential = await auth.createUserWithEmailAndPassword(email, password);
       console.log('credential', credential);
     } catch (error) {
       setStatus({ loading: false, error: true });
@@ -42,7 +42,7 @@ const LoginPage: React.FC = () => {
     <IonPage>
       <IonHeader>
         <IonToolbar>
-          <IonTitle>Login</IonTitle>
+          <IonTitle>Register</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent className="ion-padding">
@@ -61,11 +61,13 @@ const LoginPage: React.FC = () => {
           </IonItem>
         </IonList>
         {status.error &&
-          <IonText color="danger">Invalid credentials</IonText>
+          <IonText color="danger">Registration failed</IonText>
         }
-        <IonButton expand="block" onClick={handleLogin}>Login</IonButton>
-        <IonButton expand="block" fill="clear" routerLink="/register">
-          Don't have an account?
+        <IonButton expand="block" onClick={handleRegister}>
+          Create Account
+        </IonButton>
+        <IonButton expand="block" fill="clear" routerLink="/login">
+          Already have an account?
         </IonButton>
         <IonLoading isOpen={status.loading} />
       </IonContent>
