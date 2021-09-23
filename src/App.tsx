@@ -12,11 +12,12 @@ import RegisterPage from './pages/RegisterPage';
 
 const App: React.FC = () => {
   const { loading, auth } = useAuthInit();
-  console.log(`rendering App with authState:`, auth);
 
   if (loading) {
     return <IonLoading isOpen />;
   }
+
+  console.log(`rendering App with authState:`, auth);
 
   return (
     <IonApp>
